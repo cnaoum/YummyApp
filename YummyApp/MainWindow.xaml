@@ -1,0 +1,132 @@
+﻿<Window x:Class="YummyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YummyApp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+       mc:Ignorable="d"      
+    Title="MainWindow" Height="600" Width="1080" Foreground="White">
+    <!--Title="MainWindow" Height="590" Width="840">-->
+    <!--<Grid>
+        <Button Content="My Catalog" HorizontalAlignment="Left" Margin="347,230,0,0" VerticalAlignment="Top" Width="75" Click="GoToMyCatalogPage"/>
+        <Button Content="My Category" HorizontalAlignment="Left" Margin="473,230,0,0" VerticalAlignment="Top" Width="75" Click="GoToMyCategoryPage"/>
+        <Button Content="My Recipe" HorizontalAlignment="Left" Margin="596,230,0,0" VerticalAlignment="Top" Width="75" Click="GoToMyRecipePage"/>
+    </Grid>-->
+
+
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonMenuOpen">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonMenuClose">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+
+
+    <Grid>
+        <Grid Height="60" VerticalAlignment="Top" Background="#FF954254">
+            <TextBlock Text="Yummy" FontWeight="Bold" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="49" Width="134"/>
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+
+                <!--<materialDesign:PopupBox Margin="10" StaysOpen="False" PlacementMode="BottomAndAlignRightEdges">
+                    <StackPanel Width="100">
+                        <Button Content="Login"/>
+                        <Button Content="My Account"/>
+                        <Button Content="Feedback"/>
+                        <Button Content="Help"/>
+                        <Button Content="About"/>
+                        <Separator/>
+                        <Button x:Name="ButtonLogout"   Content="Logout" Click="ButtonLogout_Click"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>-->
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FFECECED">
+            <StackPanel>
+                <Grid Height="60" Background="White">
+                    <Button x:Name="ButtonMenuClose" Height="60" Width="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="ButtonMenuClose_Click">
+                        <materialDesign:PackIcon Foreground="Gray" Kind="ArrowLeft" Height="25" Width="25"/>
+                    </Button>
+                    <Button x:Name="ButtonMenuOpen" Height="60" Width="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ButtonMenuOpen_Click">
+                        <materialDesign:PackIcon Foreground="Gray" Kind="Menu" Height="25" Width="25"/>
+                    </Button>
+                </Grid>
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#FF954254">
+                    <ListViewItem Height="60" Selected="ListViewItem_Selected_1">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ViewDashboard" Width="25" Margin="10" Height="25" VerticalAlignment="Center"/>
+                            <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60" Selected="ListViewItem_Selected">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Account" Width="25" Margin="10" Height="25" VerticalAlignment="Center"/>
+                            <TextBlock Text="Catalog" VerticalAlignment="Center" Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Category" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Category" VerticalAlignment="Center" Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60" Selected="ListViewItem_Selected_1">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon x:Name="btnRecipeDashboard" Kind="FoodItalian"  Width="25" Margin="10" Height="25" VerticalAlignment="Center"/>
+                            <TextBlock Text="Recipe" VerticalAlignment="Center" Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60" Selected="Cart_Button_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ShoppingBasket"  Width="25" Margin="10" Height="25" VerticalAlignment="Center"/>
+                            <TextBlock Text="Shopping Cart" VerticalAlignment="Center" Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <Image Source="daspic.jpg" Margin="87,70,659.6,262.4"></Image>
+        </Grid>
+        <Grid>
+            <StackPanel>
+                <Label Content="Meals and Memories are made here !" FontFamily="Comic Sans MS" FontSize="24" FontWeight="Bold" FontStyle="Italic" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Animated" Margin="494,88,49.6,50.4"></Label>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Margin="500,-40,17.6,0" TextWrapping="Wrap" Height="182" Width="432" FontSize="18" LineHeight="36" Foreground="#FF803C10"><Run Text="Cooking you have to be able to master something GOOD before you can make something GREAT, but the secret ingredient is always LOVE and we make recipes with LOVE.." /></TextBlock>
+                </StackPanel>
+            </StackPanel> 
+
+        </Grid>
+        <Grid>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Trending Recipes" Margin="80,297,400,223.4" FontWeight="Bold" FontSize="16"/>
+                <Label Content="Thanksgiving Treats" Margin="-460,532,400,0.4" FontWeight="Bold" FontSize="16"/>
+                <Label Content="Halloween Treats" Margin="-230,532,400,0.4" FontWeight="Bold" FontSize="16"/>
+                <Label Content="Chritsmas Treats" Margin="-210,532,400,0.4" FontWeight="Bold" FontSize="16"/>
+            </StackPanel>
+            <Image Source="bg1.jpg" Margin="62,336,-0.4,64.4" RenderTransformOrigin="0.5,0.524" Stretch="Fill"></Image></Grid>
+        <Image Source="thanksgiving.jpg" Margin="60,351,671.6,31.4"></Image>
+        <Image Source="halloween.jpg" Margin="402,351,365.6,31.4"></Image>
+        <Image Source="christmas.jpg" Margin="638,351,-32.4,31.4"></Image>
+    </Grid>
+   
+</Window>
+
